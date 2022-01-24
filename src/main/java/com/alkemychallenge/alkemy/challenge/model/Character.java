@@ -1,8 +1,5 @@
 package com.alkemychallenge.alkemy.challenge.model;
 
-
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

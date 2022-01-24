@@ -1,6 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
+import com.alkemychallenge.alkemy.challenge.dto.CharacterDtoNameImage;
 import com.alkemychallenge.alkemy.challenge.model.Character;
 import com.alkemychallenge.alkemy.challenge.repository.CharacterRepository;
 import org.modelmapper.ModelMapper;
@@ -27,12 +28,12 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public List<CharacterDto> getAll() {
+    public List<CharacterDtoNameImage> getAll() {
         List<Character> characterList= characterRepository.findAll();
-        List<CharacterDto> characterDtoList= characterList
+        List<CharacterDtoNameImage> characterDtoList= characterList
                 .stream()
                 .map(character -> modelMapper
-                        .map(character,CharacterDto.class))
+                        .map(character,CharacterDtoNameImage.class))
                 .collect(Collectors.toList());
         return characterDtoList;
     }

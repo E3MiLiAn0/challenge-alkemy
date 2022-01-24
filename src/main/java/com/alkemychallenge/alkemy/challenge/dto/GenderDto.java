@@ -1,29 +1,23 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
-import com.alkemychallenge.alkemy.challenge.model.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class CharacterDto {
-
+public class GenderDto {
     private Long id;
-    private String image;
     @NotBlank
     private String name;
-
-    private Integer age;
-    private Double weight;
-    private String history;
-    private List<MovieDto> movies;
-
+    private String image;
 }

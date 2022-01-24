@@ -41,4 +41,6 @@ public class Movie {
     @ManyToMany(mappedBy = "movies")
     private List<Character> characters;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Gender gender;
 }

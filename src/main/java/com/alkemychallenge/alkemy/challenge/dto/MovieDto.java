@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,11 +16,9 @@ import java.util.List;
 @Getter
 @Setter
 public class MovieDto {
-
-
     private Long idMovie;
     private String image;
-
+    @NotBlank
     private String title;
 
     private LocalDate createdDate;
