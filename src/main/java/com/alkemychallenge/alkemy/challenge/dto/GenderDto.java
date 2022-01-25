@@ -1,5 +1,6 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotBlank;
 public class GenderDto {
     private Long id;
     @NotBlank
+    @JsonProperty
     private String name;
     private String image;
 }

@@ -1,6 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
 import com.alkemychallenge.alkemy.challenge.model.Movie;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class CharacterDetalleDto {
     private Long id;
     private String image;
     @NotBlank
+    @JsonProperty
     private String name;
 
     private Integer age;
