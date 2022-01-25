@@ -41,7 +41,7 @@ public class MovieServiceImpl implements MovieService{
 
         try {
             Movie movieEntityBuscado= movieRepository.getById(id);
-            movieEntityBuscado.setIdMovie(movieEntity.getIdMovie());
+
             movieEntityBuscado.setCharacters(movieEntity.getCharacters());
             movieEntityBuscado.setCreatedDate(movieEntity.getCreatedDate());
             movieEntityBuscado.setImage(movieEntity.getImage());
