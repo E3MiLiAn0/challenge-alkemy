@@ -1,6 +1,5 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
-import com.alkemychallenge.alkemy.challenge.model.Character;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +22,5 @@ public class MovieDto {
 
     private LocalDate createdDate;
     private Integer qualification;
-    private List<CharacterDtoNameImage> characters;
+    private List<CharacterDto> characters;
 }

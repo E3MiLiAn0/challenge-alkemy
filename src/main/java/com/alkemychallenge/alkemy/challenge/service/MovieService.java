@@ -1,7 +1,5 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDtoNameImage;
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
 
 import javax.validation.Valid;

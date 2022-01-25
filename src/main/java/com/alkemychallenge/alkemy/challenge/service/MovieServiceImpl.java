@@ -1,11 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDtoNameImage;
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
-import com.alkemychallenge.alkemy.challenge.model.Character;
 import com.alkemychallenge.alkemy.challenge.model.Movie;
-import com.alkemychallenge.alkemy.challenge.repository.CharacterRepository;
 import com.alkemychallenge.alkemy.challenge.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

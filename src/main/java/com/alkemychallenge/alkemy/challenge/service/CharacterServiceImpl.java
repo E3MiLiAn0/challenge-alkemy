@@ -1,7 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
+import com.alkemychallenge.alkemy.challenge.dto.CharacterDetalleDto;
 import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDtoNameImage;
 import com.alkemychallenge.alkemy.challenge.model.Character;
 import com.alkemychallenge.alkemy.challenge.repository.CharacterRepository;
 import org.modelmapper.ModelMapper;
@@ -21,28 +21,28 @@ public class CharacterServiceImpl implements CharacterService {
     private ModelMapper modelMapper;
     @Override
     @Transactional
-    public CharacterDto createCharacter(CharacterDto characterDto) {
-        Character characterEntity = modelMapper.map(characterDto, Character.class);
+    public CharacterDetalleDto createCharacter(CharacterDetalleDto characterDetalleDto) {
+        Character characterEntity = modelMapper.map(characterDetalleDto, Character.class);
          characterRepository.save(characterEntity);
-        return modelMapper.map(characterEntity, CharacterDto.class);
+        return modelMapper.map(characterEntity, CharacterDetalleDto.class);
     }
 
     @Override
-    public List<CharacterDtoNameImage> getAll() {
+    public List<CharacterDto> getAll() {
         List<Character> characterList= characterRepository.findAll();
-        List<CharacterDtoNameImage> characterDtoList= characterList
+        List<CharacterDto> characterDtoList= characterList
                 .stream()
                 .map(character -> modelMapper
-                        .map(character,CharacterDtoNameImage.class))
+                        .map(character, CharacterDto.class))
                 .collect(Collectors.toList());
         return characterDtoList;
     }
 
     @Override
-    public CharacterDto getOne(Long id) {
+    public CharacterDetalleDto getOne(Long id) {
         Character characterEntity = characterRepository.getById(id);
-        CharacterDto characterDto=modelMapper.map(characterEntity,CharacterDto.class);
-        return characterDto;
+        CharacterDetalleDto characterDetalleDto =modelMapper.map(characterEntity, CharacterDetalleDto.class);
+        return characterDetalleDto;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     @Transactional
-    public CharacterDto updateCharacter(CharacterDto characterDto, Long id) throws Exception{
-        Character characterEntity = modelMapper.map(characterDto, Character.class);
+    public CharacterDetalleDto updateCharacter(CharacterDetalleDto characterDetalleDto, Long id) throws Exception{
+        Character characterEntity = modelMapper.map(characterDetalleDto, Character.class);
         try{
 
             Character characterEntityBuscado= characterRepository.getById(id);
@@ -65,7 +65,7 @@ public class CharacterServiceImpl implements CharacterService {
             characterEntityBuscado.setMovies(characterEntity.getMovies());
 
             characterRepository.save(characterEntityBuscado);
-            return modelMapper.map(characterEntity, CharacterDto.class);
+            return modelMapper.map(characterEntity, CharacterDetalleDto.class);
         }
         catch (Exception e){
             throw new Exception(e.getMessage());

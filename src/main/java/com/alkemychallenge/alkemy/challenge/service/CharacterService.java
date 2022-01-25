@@ -1,16 +1,16 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
+import com.alkemychallenge.alkemy.challenge.dto.CharacterDetalleDto;
 import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
-import com.alkemychallenge.alkemy.challenge.dto.CharacterDtoNameImage;
 
 import javax.validation.Valid;
 import java.util.List;
 
 public interface CharacterService {
 
-    CharacterDto createCharacter(@Valid CharacterDto characterDto );
-    List<CharacterDtoNameImage> getAll();
-    CharacterDto getOne(Long id);
+    CharacterDetalleDto createCharacter(@Valid CharacterDetalleDto characterDetalleDto);
+    List<CharacterDto> getAll();
+    CharacterDetalleDto getOne(Long id);
     void deleteCharacter(Long id);
-    CharacterDto updateCharacter(@Valid CharacterDto characterDto, Long id) throws Exception;
+    CharacterDetalleDto updateCharacter(@Valid CharacterDetalleDto characterDetalleDto, Long id) throws Exception;
 }
