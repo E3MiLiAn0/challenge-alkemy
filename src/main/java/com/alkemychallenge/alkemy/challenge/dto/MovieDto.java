@@ -23,5 +23,5 @@ public class MovieDto {
 
     private LocalDate createdDate;
     private Integer qualification;
-    private List<CharacterDto> characters;
+    private List<CharacterDtoNameImage> characters;
 }
