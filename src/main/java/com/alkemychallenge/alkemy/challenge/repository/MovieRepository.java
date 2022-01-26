@@ -20,11 +20,11 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     )
     List<Movie> getMovieByNameList(@Param("name") String name);
 
-
     @Query(
             value = "SELECT * FROM movie WHERE movie.gender_id LIKE %:idGender%",
             nativeQuery = true
     )
     List<Movie> getMovieByIdGenderList(@Param("idGender") Long idGender);
+
 
 }

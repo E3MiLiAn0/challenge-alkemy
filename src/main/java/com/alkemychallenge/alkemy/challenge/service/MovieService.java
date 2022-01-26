@@ -2,6 +2,8 @@ package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
 import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,4 +18,6 @@ public interface MovieService {
 
     List<MovieDetalleDto> getMovieByName(String name);
     List<MovieDetalleDto> getMovieByIdGender(Long idGender);
+
+    Page<MovieDetalleDto> findAll(Pageable pageable);
 }

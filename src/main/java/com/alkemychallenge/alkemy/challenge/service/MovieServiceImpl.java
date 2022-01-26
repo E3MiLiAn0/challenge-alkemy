@@ -6,6 +6,8 @@ import com.alkemychallenge.alkemy.challenge.model.Movie;
 import com.alkemychallenge.alkemy.challenge.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -92,9 +94,21 @@ public class MovieServiceImpl implements MovieService{
     public List<MovieDetalleDto> getMovieByIdGender(Long idGender) {
         List<Movie> movieByIdGenderList= movieRepository.getMovieByIdGenderList(idGender);
 
-        List<MovieDetalleDto> movieDetalleDtoList = movieByIdGenderList.stream().map(movie -> modelMapper
-                                                                            .map(movie, MovieDetalleDto.class))
+        List<MovieDetalleDto> movieDetalleDtoList = movieByIdGenderList.stream()
+                                                                        .map(movie -> modelMapper
+                                                                                .map(movie, MovieDetalleDto.class))
                                                                             .collect(Collectors.toList());
         return movieDetalleDtoList;
+    }
+
+    @Override
+    public Page<MovieDetalleDto> findAll(Pageable pageable) {
+      /*  Page<Movie> moviePage = movieRepository.findAll(pageable);
+
+        Page<MovieDetalleDto> movieDetalleDtoPage = moviePage.stream()
+                                                                .map(movie -> modelMapper
+                                                                .map(movie, MovieDetalleDto.class))
+                                                                .;*/
+        return null;
     }
 }

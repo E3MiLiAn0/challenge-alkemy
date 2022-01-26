@@ -82,8 +82,8 @@ Deberán existir las operaciones básicas de creación, edición y eliminación 
 Deberá permitir buscar por título, y filtrar por género. Además, permitir ordenar los resultados por
 fecha de creación de forma ascendiente o descendiente.
 El término de búsqueda, filtro u ordenación se deberán especificar como parámetros de query:
-● /movies?name=nombre
-● /movies?genre=idGenero
+● /movies?name=nombre ✔
+● /movies?genre=idGenero ✔
 ● /movies?order=ASC | DESC
 
 11. Envío de emails
