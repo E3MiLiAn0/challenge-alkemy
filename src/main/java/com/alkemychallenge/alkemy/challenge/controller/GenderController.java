@@ -1,7 +1,6 @@
 package com.alkemychallenge.alkemy.challenge.controller;
 
 import com.alkemychallenge.alkemy.challenge.dto.GenderDto;
-import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
 import com.alkemychallenge.alkemy.challenge.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

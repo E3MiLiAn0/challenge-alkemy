@@ -1,6 +1,5 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
-import com.alkemychallenge.alkemy.challenge.model.Movie;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

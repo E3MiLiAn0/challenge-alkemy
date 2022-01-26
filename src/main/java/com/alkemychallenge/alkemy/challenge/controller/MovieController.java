@@ -2,6 +2,7 @@ package com.alkemychallenge.alkemy.challenge.controller;
 
 
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
+import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
 import com.alkemychallenge.alkemy.challenge.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,22 +27,22 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> getMovie(@Valid @PathVariable(name = "id") Long id) {
-        MovieDto movieDto = this.movieService.getOne(id);
-        return ResponseEntity.ok().body(movieDto);
+    public ResponseEntity<MovieDetalleDto> getMovie(@Valid @PathVariable(name = "id") Long id) {
+        MovieDetalleDto movieDetalleDto = this.movieService.getOne(id);
+        return ResponseEntity.ok().body(movieDetalleDto);
     }
 
     @PostMapping("")
-    public ResponseEntity<MovieDto> createMovie(@Valid @RequestBody MovieDto movie){
-            MovieDto movieDto = movieService.createMovie(movie);
-            return ResponseEntity.ok().body(movieDto);
+    public ResponseEntity<MovieDetalleDto> createMovie(@Valid @RequestBody MovieDetalleDto movie){
+        MovieDetalleDto movieDetalleDto = movieService.createMovie(movie);
+            return ResponseEntity.ok().body(movieDetalleDto);
     }
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<MovieDto> updateMovie(@Valid @RequestBody MovieDto movie, @PathVariable Long id) throws Exception {
-        MovieDto movieDto = movieService.updateMovie(movie, id);
-        return ResponseEntity.ok().body(movieDto);
+    public ResponseEntity<MovieDetalleDto> updateMovie(@Valid @RequestBody MovieDetalleDto movie, @PathVariable Long id) throws Exception {
+        MovieDetalleDto movieDetalleDto = movieService.updateMovie(movie, id);
+        return ResponseEntity.ok().body(movieDetalleDto);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -1,6 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
+import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
 import com.alkemychallenge.alkemy.challenge.model.Movie;
 import com.alkemychallenge.alkemy.challenge.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
@@ -23,10 +24,10 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     @Transactional
-    public MovieDto createMovie(MovieDto movieDto) {
-        Movie movieEntity = modelMapper.map(movieDto, Movie.class);
+    public MovieDetalleDto createMovie(MovieDetalleDto movieDetalleDto) {
+        Movie movieEntity = modelMapper.map(movieDetalleDto, Movie.class);
         movieRepository.save(movieEntity);
-        return modelMapper.map(movieEntity, MovieDto.class);
+        return modelMapper.map(movieEntity, MovieDetalleDto.class);
     }
 
     @Override
@@ -36,8 +37,8 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     @Transactional
-    public MovieDto updateMovie(MovieDto movieDto, Long id) throws Exception {
-        Movie movieEntity = modelMapper.map(movieDto, Movie.class);
+    public MovieDetalleDto updateMovie(MovieDetalleDto movieDetalleDto, Long id) throws Exception {
+        Movie movieEntity = modelMapper.map(movieDetalleDto, Movie.class);
 
         try {
             Movie movieEntityBuscado= movieRepository.getById(id);
@@ -50,7 +51,7 @@ public class MovieServiceImpl implements MovieService{
             movieEntityBuscado.setTitle(movieEntity.getTitle());
 
             movieRepository.save(movieEntityBuscado);
-            return modelMapper.map(movieEntity,MovieDto.class);
+            return modelMapper.map(movieEntity, MovieDetalleDto.class);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -61,18 +62,18 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<MovieDto> getAll() {
         List<Movie> movieList= movieRepository.findAll();
-        List<MovieDto> movieDtoList= movieList
+        List<MovieDto> movieDtoList = movieList
                 .stream()
                 .map(movie -> modelMapper
-                        .map(movie,MovieDto.class))
+                        .map(movie, MovieDto.class))
                 .collect(Collectors.toList());
         return movieDtoList;
     }
 
     @Override
-    public MovieDto getOne(Long id) {
+    public MovieDetalleDto getOne(Long id) {
         Movie movieEntity = movieRepository.getById(id);
-        MovieDto movieDto=modelMapper.map(movieEntity,MovieDto.class);
-        return movieDto;
+        MovieDetalleDto movieDetalleDto =modelMapper.map(movieEntity, MovieDetalleDto.class);
+        return movieDetalleDto;
     }
 }

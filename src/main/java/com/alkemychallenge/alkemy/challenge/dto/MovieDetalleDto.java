@@ -18,11 +18,19 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MovieDto {
+public class MovieDetalleDto {
     private Long idMovie;
     private String image;
     @NotBlank
     @JsonProperty
     private String title;
+
     private LocalDate createdDate;
+
+    @JsonProperty
+    @Min(value = 1 )
+    @Max(value = 5)
+    private Integer qualification;
+    private List<CharacterDto> characters;
+    private Gender gender;
 }

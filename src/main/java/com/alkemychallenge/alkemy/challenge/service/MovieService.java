@@ -1,15 +1,16 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
+import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
 
 import javax.validation.Valid;
 import java.util.List;
 
 public interface MovieService {
 
-    MovieDto createMovie(@Valid MovieDto createMovie );
+    MovieDetalleDto createMovie(@Valid MovieDetalleDto createMovie );
     void deleteMovie(Long id);
-    MovieDto updateMovie(@Valid MovieDto movieDto, Long id) throws Exception;
+    MovieDetalleDto updateMovie(@Valid MovieDetalleDto movieDetalleDto, Long id) throws Exception;
     List<MovieDto> getAll();
-    MovieDto getOne(Long id);
+    MovieDetalleDto getOne(Long id);
 }

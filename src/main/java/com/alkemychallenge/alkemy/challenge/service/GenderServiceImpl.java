@@ -1,9 +1,7 @@
 package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.GenderDto;
-import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
 import com.alkemychallenge.alkemy.challenge.model.Gender;
-import com.alkemychallenge.alkemy.challenge.model.Movie;
 import com.alkemychallenge.alkemy.challenge.repository.GenderRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
