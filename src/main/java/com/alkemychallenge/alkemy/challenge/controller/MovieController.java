@@ -50,4 +50,17 @@ public class MovieController {
         this.movieService.deleteMovie(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping(value = "", params = "name")
+    public ResponseEntity<List<MovieDetalleDto>> getMovieByName(@Valid @RequestParam String name) {
+        List<MovieDetalleDto> movieDetalleDtoListByName = this.movieService.getMovieByName(name);
+        return ResponseEntity.ok().body(movieDetalleDtoListByName);
+    }
+
+    @GetMapping(params = "idGender")
+    public ResponseEntity<List<MovieDetalleDto>> getMovieByIdGender(@Valid @RequestParam Long idGender) {
+        List<MovieDetalleDto> movieDetalleDtoListByIdGender = this.movieService.getMovieByIdGender(idGender);
+        return ResponseEntity.ok().body(movieDetalleDtoListByIdGender);
+    }
 }

@@ -76,4 +76,25 @@ public class MovieServiceImpl implements MovieService{
         MovieDetalleDto movieDetalleDto =modelMapper.map(movieEntity, MovieDetalleDto.class);
         return movieDetalleDto;
     }
+
+    @Override
+    public List<MovieDetalleDto> getMovieByName(String name) {
+        List<Movie> movieByNameList= movieRepository.getMovieByNameList(name);
+
+        List<MovieDetalleDto> movieDetalleDtoList = movieByNameList.stream()
+                                                                    .map(movie -> modelMapper
+                                                                    .map(movie, MovieDetalleDto.class))
+                                                                    .collect(Collectors.toList());
+        return movieDetalleDtoList;
+    }
+
+    @Override
+    public List<MovieDetalleDto> getMovieByIdGender(Long idGender) {
+        List<Movie> movieByIdGenderList= movieRepository.getMovieByIdGenderList(idGender);
+
+        List<MovieDetalleDto> movieDetalleDtoList = movieByIdGenderList.stream().map(movie -> modelMapper
+                                                                            .map(movie, MovieDetalleDto.class))
+                                                                            .collect(Collectors.toList());
+        return movieDetalleDtoList;
+    }
 }

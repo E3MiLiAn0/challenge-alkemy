@@ -51,6 +51,7 @@ public class GenderServiceImpl implements GenderService {
 
     }
 
+    @Transactional
     @Override
     public GenderDto updateGender(GenderDto genderDto, Long id) {
         Gender genderEntity = modelMapper.map(genderDto,Gender.class);

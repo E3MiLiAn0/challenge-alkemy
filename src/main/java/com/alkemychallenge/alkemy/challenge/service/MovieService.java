@@ -13,4 +13,7 @@ public interface MovieService {
     MovieDetalleDto updateMovie(@Valid MovieDetalleDto movieDetalleDto, Long id) throws Exception;
     List<MovieDto> getAll();
     MovieDetalleDto getOne(Long id);
+
+    List<MovieDetalleDto> getMovieByName(String name);
+    List<MovieDetalleDto> getMovieByIdGender(Long idGender);
 }
