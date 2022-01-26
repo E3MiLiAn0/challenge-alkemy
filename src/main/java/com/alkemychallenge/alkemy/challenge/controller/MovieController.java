@@ -26,7 +26,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> getMovie(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<MovieDto> getMovie(@Valid @PathVariable(name = "id") Long id) {
         MovieDto movieDto = this.movieService.getOne(id);
         return ResponseEntity.ok().body(movieDto);
     }
@@ -39,13 +39,13 @@ public class MovieController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<MovieDto> updateMovie(@RequestBody MovieDto movie, @PathVariable Long id) throws Exception {
+    public ResponseEntity<MovieDto> updateMovie(@Valid @RequestBody MovieDto movie, @PathVariable Long id) throws Exception {
         MovieDto movieDto = movieService.updateMovie(movie, id);
         return ResponseEntity.ok().body(movieDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMovie(@PathVariable(name = "id") long id) {
+    public ResponseEntity<?> deleteMovie(@Valid @PathVariable(name = "id") long id) {
         this.movieService.deleteMovie(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

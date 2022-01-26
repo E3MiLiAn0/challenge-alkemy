@@ -1,5 +1,6 @@
 package com.alkemychallenge.alkemy.challenge.dto;
 
+import com.alkemychallenge.alkemy.challenge.model.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +32,5 @@ public class MovieDto {
     @Max(value = 5)
     private Integer qualification;
     private List<CharacterDto> characters;
+    private Gender gender;
 }

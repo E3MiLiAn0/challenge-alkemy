@@ -26,7 +26,7 @@ public class GenderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GenderDto> getGender(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<GenderDto> getGender(@Valid @PathVariable(name = "id") Long id) {
         GenderDto genderDto = this.genderService.getOne(id);
         return ResponseEntity.ok().body(genderDto);
     }
@@ -40,14 +40,19 @@ public class GenderController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<GenderDto> updateGender(@RequestBody GenderDto gender, @PathVariable Long id)  {
+    public ResponseEntity<GenderDto> updateGender(@Valid @RequestBody GenderDto gender, @PathVariable Long id)  {
         GenderDto genderDto = genderService.updateGender(gender, id);
         return ResponseEntity.ok().body(genderDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteGender(@PathVariable(name = "id") long id) {
-        this.genderService.deleteGender(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> deleteGender(@Valid @PathVariable(name = "id") long id) {
+        try{
+            this.genderService.deleteGender(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+        }
+
     }
 }

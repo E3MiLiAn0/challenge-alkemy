@@ -18,4 +18,5 @@ public class CharacterDto {
     @NotBlank
     @JsonProperty
     private String name;
+
 }

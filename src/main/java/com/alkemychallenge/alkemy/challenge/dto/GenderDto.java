@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
@@ -17,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class GenderDto {
+    @JsonProperty
     private Long id;
     @NotBlank
     @JsonProperty
