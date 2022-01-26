@@ -25,4 +25,5 @@ public class MovieDto {
     @JsonProperty
     private String title;
     private LocalDate createdDate;
+
 }

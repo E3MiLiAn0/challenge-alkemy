@@ -7,6 +7,8 @@ import com.alkemychallenge.alkemy.challenge.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -96,19 +98,36 @@ public class MovieServiceImpl implements MovieService{
 
         List<MovieDetalleDto> movieDetalleDtoList = movieByIdGenderList.stream()
                                                                         .map(movie -> modelMapper
-                                                                                .map(movie, MovieDetalleDto.class))
-                                                                            .collect(Collectors.toList());
+                                                                        .map(movie, MovieDetalleDto.class))
+                                                                        .collect(Collectors.toList());
         return movieDetalleDtoList;
     }
 
     @Override
-    public Page<MovieDetalleDto> findAll(Pageable pageable) {
-      /*  Page<Movie> moviePage = movieRepository.findAll(pageable);
+    public List<MovieDetalleDto> getMovieListOrderByDate(String orden) {
+    String ascendente = "asc";
+    String descendente = "desc";
 
-        Page<MovieDetalleDto> movieDetalleDtoPage = moviePage.stream()
-                                                                .map(movie -> modelMapper
-                                                                .map(movie, MovieDetalleDto.class))
-                                                                .;*/
-        return null;
+        if (orden.equals(descendente)){
+            List<Movie> movieListOrderByDate = movieRepository.getMovieListOrderDescByDate();
+
+            List<MovieDetalleDto> movieDetalleDtoList = movieListOrderByDate.stream()
+                                                                            .map(movie -> modelMapper
+                                                                            .map(movie, MovieDetalleDto.class))
+                                                                            .collect(Collectors.toList());
+            return movieDetalleDtoList;
+        }else{
+            List<Movie> movieListOrderByDate = movieRepository.getMovieListOrderAscByDate();
+
+            List<MovieDetalleDto> movieDetalleDtoList = movieListOrderByDate.stream()
+                    .map(movie -> modelMapper
+                            .map(movie, MovieDetalleDto.class))
+                    .collect(Collectors.toList());
+            return movieDetalleDtoList;
+        }
+
+
     }
+
+
 }

@@ -5,6 +5,8 @@ import com.alkemychallenge.alkemy.challenge.dto.MovieDto;
 import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
 import com.alkemychallenge.alkemy.challenge.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,5 +64,11 @@ public class MovieController {
     public ResponseEntity<List<MovieDetalleDto>> getMovieByIdGender(@Valid @RequestParam Long idGender) {
         List<MovieDetalleDto> movieDetalleDtoListByIdGender = this.movieService.getMovieByIdGender(idGender);
         return ResponseEntity.ok().body(movieDetalleDtoListByIdGender);
+    }
+
+    @GetMapping(params = "orden")
+    public ResponseEntity<List<MovieDetalleDto>> getMovieListOrderByDate(@Valid @RequestParam String orden) {
+        List<MovieDetalleDto> movieDetalleDto = this.movieService.getMovieListOrderByDate(orden);
+        return ResponseEntity.ok().body(movieDetalleDto);
     }
 }

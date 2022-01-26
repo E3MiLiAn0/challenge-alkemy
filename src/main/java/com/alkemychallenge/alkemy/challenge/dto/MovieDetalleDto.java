@@ -24,7 +24,6 @@ public class MovieDetalleDto {
     @NotBlank
     @JsonProperty
     private String title;
-
     private LocalDate createdDate;
 
     @JsonProperty

@@ -19,5 +19,5 @@ public interface MovieService {
     List<MovieDetalleDto> getMovieByName(String name);
     List<MovieDetalleDto> getMovieByIdGender(Long idGender);
 
-    Page<MovieDetalleDto> findAll(Pageable pageable);
+    List<MovieDetalleDto> getMovieListOrderByDate(String orden);
 }
