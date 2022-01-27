@@ -1,8 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.alkemychallenge.alkemy.challenge.auth.filter;
 
 
-import com.alkemychallenge.alkemy.challenge.auth.service.Jwt;
-import com.alkemychallenge.alkemy.challenge.auth.service.UsuarioService;
+import com.alkemychallenge.alkemy.challenge.auth.service.JwtUtils;
+import com.alkemychallenge.alkemy.challenge.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,13 +21,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ *
+ * @author JuanPC
+ */
 @Component
-public class JwtFilter extends OncePerRequestFilter {
+public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UserDetailsCustomService userDetailsCustomService;
     @Autowired
-    private Jwt jwtUtil;
+    private JwtUtils jwtUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -40,7 +49,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = this.usuarioService.loadUserByUsername(username);
+            UserDetails userDetails = this.userDetailsCustomService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authReq =
@@ -54,4 +63,3 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
 }
-

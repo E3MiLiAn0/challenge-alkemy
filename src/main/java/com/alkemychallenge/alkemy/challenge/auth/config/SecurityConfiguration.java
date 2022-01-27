@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.alkemychallenge.alkemy.challenge.auth.config;
 
-import com.alkemychallenge.alkemy.challenge.auth.filter.JwtFilter;
-import com.alkemychallenge.alkemy.challenge.auth.service.UsuarioService;
+import com.alkemychallenge.alkemy.challenge.auth.filter.JwtRequestFilter;
+import com.alkemychallenge.alkemy.challenge.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,14 +19,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ *
+ * @author JuanPC
+ */
+
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UsuarioService userDetailsCustomService;
+    private UserDetailsCustomService userDetailsCustomService;
     @Autowired
-    private JwtFilter jwtRequestFilter;
-
+    private JwtRequestFilter jwtRequestFilter;
+ 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -41,11 +51,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity.csrf().disable()            
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/ingreso").permitAll()
-                .antMatchers("/auth/*").permitAll()
+                .antMatchers("/").permitAll()  
+                .antMatchers("/ingreso").permitAll()   
+                .antMatchers("/auth/*").permitAll()                
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement()
@@ -53,4 +63,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 }

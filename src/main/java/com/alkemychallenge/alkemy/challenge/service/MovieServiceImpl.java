@@ -59,8 +59,6 @@ public class MovieServiceImpl implements MovieService{
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-
-
     }
 
     @Override
@@ -125,8 +123,6 @@ public class MovieServiceImpl implements MovieService{
                     .collect(Collectors.toList());
             return movieDetalleDtoList;
         }
-
-
     }
 
 

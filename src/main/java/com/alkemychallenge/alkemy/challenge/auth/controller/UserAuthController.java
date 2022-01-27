@@ -1,10 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.alkemychallenge.alkemy.challenge.auth.controller;
 
-import com.alkemychallenge.alkemy.challenge.auth.Dto.AuthenticationRequest;
-import com.alkemychallenge.alkemy.challenge.auth.Dto.AuthenticationResponse;
-import com.alkemychallenge.alkemy.challenge.auth.Dto.UsuarioDetalleDto;
-import com.alkemychallenge.alkemy.challenge.auth.service.Jwt;
-import com.alkemychallenge.alkemy.challenge.auth.service.UsuarioService;
+import com.alkemychallenge.alkemy.challenge.auth.dto.AuthenticationRequest;
+import com.alkemychallenge.alkemy.challenge.auth.dto.AuthenticationResponse;
+import com.alkemychallenge.alkemy.challenge.auth.dto.UserDTO;
+import com.alkemychallenge.alkemy.challenge.auth.service.JwtUtils;
+import com.alkemychallenge.alkemy.challenge.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,39 +25,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ *
+ * @author JuanPC
+ */
 @RestController
 @RequestMapping("/auth")
-public class UsuarioController {
+public class UserAuthController {
 
-    private UsuarioService userDetailsService;
+    private UserDetailsCustomService userDetailsService;
     private AuthenticationManager authenticationManager;
-    private Jwt jwtTokenUtil;
+    private JwtUtils jwtTokenUtil;
 
 
     @Autowired
-    public UsuarioController(
-            UsuarioService userDetailsService,
+    public UserAuthController(
+            UserDetailsCustomService userDetailsService,
             AuthenticationManager authenticationManager,
-            Jwt jwtTokenUtil) {
+            JwtUtils jwtTokenUtil) {
         this.userDetailsService = userDetailsService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<AuthenticationResponse> singUp(@Valid @RequestBody UsuarioDetalleDto user) throws Exception {
+    public ResponseEntity<AuthenticationResponse> singUp(@Valid @RequestBody UserDTO user) throws Exception {
         this.userDetailsService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/signin")
     public ResponseEntity<AuthenticationResponse> singIn(@RequestBody AuthenticationRequest authRequest) throws Exception {
-
+       
         UserDetails userDetails;
         try {
             System.out.println("Usuario entrante: "+authRequest.toString());
-
-
+            
+            
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             authRequest.getUsername(),
@@ -70,3 +79,4 @@ public class UsuarioController {
     }
 
 }
+
