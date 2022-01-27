@@ -2,7 +2,9 @@ package com.alkemychallenge.alkemy.challenge.service;
 
 import com.alkemychallenge.alkemy.challenge.dto.CharacterDetalleDto;
 import com.alkemychallenge.alkemy.challenge.dto.CharacterDto;
+import com.alkemychallenge.alkemy.challenge.dto.MovieDetalleDto;
 import com.alkemychallenge.alkemy.challenge.model.Character;
+import com.alkemychallenge.alkemy.challenge.model.Movie;
 import com.alkemychallenge.alkemy.challenge.repository.CharacterRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,4 +74,39 @@ public class CharacterServiceImpl implements CharacterService {
         }
 
     }
+
+    @Override
+    public List<CharacterDetalleDto> findByName(String name) {
+        List<Character> characterFindByNameList= characterRepository.findByNameContains(name);
+
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByNameList.stream()
+                                                                    .map(character -> modelMapper
+                                                                    .map(character, CharacterDetalleDto.class))
+                                                                    .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
+
+
+
+    @Override
+    public List<CharacterDetalleDto> findByAge(Integer age) {
+        List<Character> characterFindByAgeList= characterRepository.findByAge(age);
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByAgeList.stream()
+                                                                            .map(character -> modelMapper
+                                                                            .map(character, CharacterDetalleDto.class))
+                                                                            .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
+
+    @Override
+    public List<CharacterDetalleDto> findByIdMovie(Long idMovie) {
+        List<Character> characterFindByIdMovieList= characterRepository.getCharacterByIdMovieList(idMovie);
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByIdMovieList.stream()
+                .map(character -> modelMapper
+                        .map(character, CharacterDetalleDto.class))
+                .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
+
+
 }
