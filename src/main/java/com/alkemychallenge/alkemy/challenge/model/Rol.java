@@ -7,24 +7,20 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name ="user")
+@Table(name ="rol")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class User {
+public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
-    private Long idMovie;
+    @Column(name = "id_rol")
+    private Long idRol;
 
-    @Column(name = "mail")
-    private String mail;
-
-    @Column(name = "pass")
-    private String pass;
-
-    @Column(name = "accountVerified")
-    private Boolean accountVerified;
+    @Column(name = "name")
+    private String name;
 }
