@@ -72,4 +72,37 @@ public class CharacterServiceImpl implements CharacterService {
         }
 
     }
+
+    @Override
+    public List<CharacterDetalleDto> findByName(String name) {
+        List<Character> characterFindByNameList= characterRepository.findByNameContains(name);
+
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByNameList.stream()
+                .map(character -> modelMapper
+                        .map(character, CharacterDetalleDto.class))
+                .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
+
+
+
+    @Override
+    public List<CharacterDetalleDto> findByAge(Integer age) {
+        List<Character> characterFindByAgeList= characterRepository.findByAge(age);
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByAgeList.stream()
+                .map(character -> modelMapper
+                        .map(character, CharacterDetalleDto.class))
+                .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
+
+    @Override
+    public List<CharacterDetalleDto> findByIdMovie(Long idMovie) {
+        List<Character> characterFindByIdMovieList= characterRepository.getCharacterByIdMovieList(idMovie);
+        List<CharacterDetalleDto> characterDetalleDtoList= characterFindByIdMovieList.stream()
+                .map(character -> modelMapper
+                        .map(character, CharacterDetalleDto.class))
+                .collect(Collectors.toList());
+        return characterDetalleDtoList;
+    }
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.alkemychallenge.alkemy.challenge.auth.filter;
 
 
@@ -21,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- *
- * @author JuanPC
- */
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -55,7 +48,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authReq =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authReq.setDetails(authReq);
-                // Set auth in context
                 SecurityContextHolder.getContext().setAuthentication(authReq);
             }
         }

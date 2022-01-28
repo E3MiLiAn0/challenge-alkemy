@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.alkemychallenge.alkemy.challenge.auth.service;
 
 import com.alkemychallenge.alkemy.challenge.auth.dto.UserDTO;
@@ -18,17 +14,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-/**
- *
- * @author JuanPC
- */
 @Service
 public class UserDetailsCustomService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-    /*@Autowired
-    private EmailService emailService;*/
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -51,9 +42,7 @@ public class UserDetailsCustomService implements UserDetailsService {
         String password = passwordEncoder.encode(userDTO.getPassword());
         userEntity.setPassword(password);
         userEntity = this.userRepository.save(userEntity);
-       /* if (userEntity != null) {
-            emailService.sendWelcomeEmailTo(userEntity.getUsername());
-        }*/
+
         return userEntity != null;
     }
 

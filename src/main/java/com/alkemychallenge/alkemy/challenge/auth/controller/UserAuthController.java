@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.alkemychallenge.alkemy.challenge.auth.controller;
 
 import com.alkemychallenge.alkemy.challenge.auth.dto.AuthenticationRequest;
@@ -18,17 +14,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- *
- * @author JuanPC
- */
 @RestController
 @RequestMapping("/auth")
 public class UserAuthController {
@@ -48,7 +37,7 @@ public class UserAuthController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signup" )
     public ResponseEntity<AuthenticationResponse> singUp(@Valid @RequestBody UserDTO user) throws Exception {
         this.userDetailsService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -77,6 +66,7 @@ public class UserAuthController {
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
+
 
 }
 

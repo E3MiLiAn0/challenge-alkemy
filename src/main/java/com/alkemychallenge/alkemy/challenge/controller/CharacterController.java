@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -54,6 +55,23 @@ public class CharacterController {
 
         this.characterService.deleteCharacter(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @GetMapping( params = "name")
+    public ResponseEntity<List<CharacterDetalleDto>> getCharacterByName(@Valid @RequestParam String name) {
+        List<CharacterDetalleDto> characterDetalleDtoListByName = characterService.findByName(name);
+        return ResponseEntity.ok().body(characterDetalleDtoListByName);
+    }
+
+    @GetMapping( params = "age")
+    public ResponseEntity<List<CharacterDetalleDto>> getCharacterByAge(@Valid @RequestParam Integer age) {
+        List<CharacterDetalleDto> characterDetalleDtoListByAge = characterService.findByAge(age);
+        return ResponseEntity.ok().body(characterDetalleDtoListByAge);
+    }
+
+    @GetMapping( params = "idMovie")
+    public ResponseEntity<List<CharacterDetalleDto>> getCharacterByIdMovie(@Valid @RequestParam Long idMovie) {
+        List<CharacterDetalleDto> characterDetalleDtoListByIdMovie = characterService.findByIdMovie(idMovie);
+        return ResponseEntity.ok().body(characterDetalleDtoListByIdMovie);
     }
 }

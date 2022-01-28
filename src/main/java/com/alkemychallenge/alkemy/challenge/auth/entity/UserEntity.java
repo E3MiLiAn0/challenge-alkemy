@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.alkemychallenge.alkemy.challenge.auth.entity;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -14,10 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Collections;
 
-/**
- *
- * @author JuanPC
- */
+
 @Entity
 @Table(name = "user")
 public class UserEntity implements UserDetails {
@@ -27,7 +20,7 @@ public class UserEntity implements UserDetails {
     private Long id;
     @Email
     private String username;
-    @Size(min = 8)
+    @Size(min = 4)
     private String password;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
